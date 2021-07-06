@@ -4,7 +4,7 @@ const db = require('./models');
 const user = require('./routes/users');
 const port  = process.env.port || 6000;
 const cors = require('cors');
-
+require('./utils/sendMail')
 
 app.use(cors({
     origin: ['http://localhost:3000']

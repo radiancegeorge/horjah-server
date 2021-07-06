@@ -10,6 +10,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.2",
     "sequelize": "^6.6.2",
     "sqlite3": "^5.0.2"
   }

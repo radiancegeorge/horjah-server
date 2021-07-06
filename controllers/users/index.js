@@ -1,10 +1,11 @@
 require('dotenv').config();
 const asyncHandler = require('express-async-handler');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
 const {Users} = require('../../models');
 const {Op} = require("sequelize");
-
-
+const genOTP = require('../../utils/genOTP');
+const sendMail = require('../../utils/sendMail');
+const {hashPassword} = require('../../utils/hashPassword');
 //required parameters 
 // first_name, last_name, email, password, tel
 const registration = asyncHandler(async (req, res, next) => {
@@ -13,33 +14,26 @@ const registration = asyncHandler(async (req, res, next) => {
     let message;
     try{
         const user = await Users.findOne({
-            attributes: ["email"]
-        },{
             where: {
-                [Op.or]: [{email},{tel}]
+                [Op.or]: [{email}, {tel}]
             }
         });
-
-        if(user?.email){ 
-            message = "email or phone number already exist";
-            throw "err";
+        
+        if(user?.dataValues?.email){ 
+            console.log(user.dataValues)
+            message = "email or number already exists";
+            throw message;
         }
-        if(user?.tel){
-            message = "phone number already exist";
-            throw "err"
-        }
-
-        data.hashedPassword = await bcrypt.hash(password, Number(process.env.salt));
+        
+        data.hashedPassword = await hashPassword(password);
     }catch(err){
-        res.status(500)
-        throw new Error(message);
+        res.status(500).json({error: err})
     };
     try{
         Users.create({...req.body, password: data.hashedPassword});
         res.status(200).json({message: "successfully registered", ...req.body, password: ""});
     }catch(err){
-        res.status(500)
-        throw new Error("Error creating User");
+        res.status(500).json({error: "Error creating User"})
     };
 });
 
@@ -50,30 +44,64 @@ const login = asyncHandler( async (req, res, next)=>{
     const {password, email} = req.body;
     const data = {};
      try{
-        data.user = await Users.findOne({
-            attributes: ["id", "email", "first_name", "last_name", "password", "tel"]
-        },{
+        const user = await Users.findOne({
             where: {
                 email
             }
-        })
-     }catch(err){
-         res.status(401)
-         throw new Error("invalid username")
-     }
-     try{
-        const isUser = await bcrypt.compare(password, data.user.password);
-        isUser && res.status(200).json({message: "success", ...data.user.dataValues, password: ""});
-        !isUser && res.status(401).json({message: "invalid password"});
-     }catch(err){
-         res.status(401)
-         throw new Error(err.message);
+        });
+        if(!user) throw "No such user"
+        const isUser = await bcrypt.compare(password, user.dataValues.password);
+        if(!isUser) throw "invalid password, please try again";
+        isUser && res.status(200).json({message: "success", ...user.dataValues, password: ""});
+     }catch(error){
+         res.status(401).json({error})
      }
     
+});
+
+
+
+
+const requestPasswordReset = asyncHandler(async(req, res, next) => {
+    const {email} = req.body;
+    const otp = genOTP();
+    const message = `
+        You have requested to change ur password <br>
+        otp: ${otp}
+    `
+    try{
+        const isEmail = await Users.findOne({
+            where: {
+                email
+            }
+        });
+        console.log(isEmail)
+        if(!isEmail) throw {error: "No such mail found"}
+        const mailStatus = await sendMail(message, email, process.env.reset_email);
+        mailStatus && res.status(200).json({message: "success", otp})
+    }catch(error){
+        res.status(500).json(error);
+    }
 })
 
+const resetPassword = asyncHandler(async (req, res, next) => {
+    const {email, password} = req.body;
+    try{
+        Users.update({
+            password: await hashPassword(password),
+        }, {
+            where: { email }
+        });
+        console.log()
+        res.status(200).json({message: "Password has been changed successfully"});
+    }catch(error){
+        res.status(500).json(error)
+    }
+})
 
 module.exports = {
     login,
     registration,
+    requestPasswordReset,
+    resetPassword
 }
