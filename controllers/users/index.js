@@ -19,7 +19,7 @@ const registration = asyncHandler(async (req, res, next) => {
             }
         });
         
-        if(user?.dataValues?.email){ 
+        if(user.dataValues.email){ 
             console.log(user.dataValues)
             message = "email or number already exists";
             throw message;
