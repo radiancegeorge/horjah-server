@@ -18,22 +18,17 @@ const registration = asyncHandler(async (req, res, next) => {
                 [Op.or]: [{email}, {tel}]
             }
         });
-        
-        if(user.dataValues.email){ 
+        const setMessage = (text) => {
+            message = text;
             console.log(user.dataValues)
-            message = "email or number already exists";
             throw message;
         }
-        
+        user && user.dataValues && user.dataValues.email && setMessage("email or phone number already exists");
         data.hashedPassword = await hashPassword(password);
-    }catch(err){
-        res.status(500).json({error: err})
-    };
-    try{
         Users.create({...req.body, password: data.hashedPassword});
         res.status(200).json({message: "successfully registered", ...req.body, password: ""});
     }catch(err){
-        res.status(500).json({error: "Error creating User"})
+        res.status(500).json({error: err})
     };
 });
 
