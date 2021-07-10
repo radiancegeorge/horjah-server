@@ -87,7 +87,6 @@ const resetPassword = asyncHandler(async (req, res, next) => {
         }, {
             where: { email }
         });
-        console.log()
         res.status(200).json({message: "Password has been changed successfully"});
     }catch(error){
         res.status(500).json(error)
