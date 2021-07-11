@@ -6,6 +6,7 @@ const db = require('./models');
 const user = require('./routes/users');
 const port  = process.env.port || 6000;
 const cors = require('cors');
+const products = require('./routes/products');
 require('./utils/sendMail')
 
 app.use(cors({
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.use('/user', user);
+app.use('/products', products)
 
 
 db.sequelize
