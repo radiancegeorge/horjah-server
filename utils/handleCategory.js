@@ -24,7 +24,12 @@ const deleteCategory = async (id) =>{
     return await Categories.findAll();
 }
 
+const getCategories = async () =>{
+    const data = await Categories.findAll();
+    return data
+}
 module.exports = {
     addCategory,
-    deleteCategory
+    deleteCategory,
+    getCategories
 }
