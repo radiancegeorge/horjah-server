@@ -75,7 +75,7 @@ const requestPasswordReset = asyncHandler(async(req, res, next) => {
         const mailStatus = await sendMail(message, email, process.env.reset_email);
         mailStatus && res.status(200).json({message: "success", otp})
     }catch(error){
-        res.status(500).json(error);
+        res.status(500).json({error});
     }
 })
 
