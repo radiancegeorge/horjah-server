@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const fileUpload = require('express-fileupload');
 const { deleteCategory, addCategory, getCategories } = require('../../utils/handleCategory');
 const handleImage = require('../../utils/imageStore');
-const { createProducts } = require('../../utils/products');
+const { createProducts, getProducts } = require('../../utils/products');
 
 const removeCategory = asyncHandler(async (req, res, next) => {
     const {id} = req.body;
@@ -53,10 +53,22 @@ const addProducts = asyncHandler(async(req, res, next) => {
         next(error);
     }
 })
-
+const getProduct = asyncHandler(async(req, res, next) => {
+    const {body} = req;
+    try{
+        const product = await getProducts(body);
+        res.status(200).json({
+            message: "success",
+            product
+        });
+    }catch(error){
+        next(error);
+    }
+})
 module.exports = {
     removeCategory,
     createCategory,
     getAllCategories,
-    addProducts
+    addProducts,
+    getProduct
 }
