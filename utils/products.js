@@ -29,7 +29,8 @@ const createProducts = async ({
 
 const getProducts = async ({
     category,
-    name
+    name,
+    id
 }) => {
     if(category){
         return await Products.findAll({
@@ -49,11 +50,32 @@ const getProducts = async ({
             }
         });
     }
+    if(id){
+        return await Products.findOne(
+            {
+                where: {
+                    id
+                }
+            }
+        )
+    }
     if(!name && !category){
         return await Products.findAll();
     }
 }
+const deleteProduct = async(id)=>{
+   if(!id) throw new Error("ID cannot be empty");
+   const isDeleted = await Products.destroy(
+       {
+           where: {
+               id
+           }
+       }
+   );
+   return isDeleted;
+};
 module.exports = Object.freeze({
     createProducts,
-    getProducts
+    getProducts,
+    deleteProduct
 })
