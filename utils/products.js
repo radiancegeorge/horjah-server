@@ -64,7 +64,7 @@ const getProducts = async ({
     }
 }
 const deleteProduct = async(id)=>{
-   if(!id) throw new Error("ID cannot be empty");
+   if(!id) throw "ID cannot be empty";
    const isDeleted = await Products.destroy(
        {
            where: {

@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const fileUpload = require('express-fileupload');
 const { deleteCategory, addCategory, getCategories } = require('../../utils/handleCategory');
 const handleImage = require('../../utils/imageStore');
-const { createProducts, getProducts } = require('../../utils/products');
+const { createProducts, getProducts, deleteProduct } = require('../../utils/products');
 
 const removeCategory = asyncHandler(async (req, res, next) => {
     const {id} = req.body;
@@ -62,7 +62,31 @@ const getProduct = asyncHandler(async(req, res, next) => {
             product
         });
     }catch(error){
-        next(error);
+        res.status(500).json({
+            error
+        })
+    }
+});
+const removeProducts = asyncHandler(async (req, res, next) => {
+    try{
+        const {id} = req.body;
+        const isDeleted = await deleteProduct(id);
+        console.log(isDeleted)
+        if(isDeleted){
+            const products = await getProduct()
+            res.status(200).json({
+                message: "success",
+                products: products
+            });
+        }else{
+            res.status(200).json({
+                message: "product does not exist"
+            })
+        }
+    }catch(error){
+        res.status(500).json({
+            error
+        })
     }
 })
 module.exports = {
@@ -70,5 +94,6 @@ module.exports = {
     createCategory,
     getAllCategories,
     addProducts,
-    getProduct
+    getProduct,
+    removeProducts
 }
