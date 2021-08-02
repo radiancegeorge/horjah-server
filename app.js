@@ -23,6 +23,8 @@ app.use('/user', user);
 app.use('/products', products)
 
 
+app.use("/uploads", express.static('uploads'));
+
 db.sequelize
 .sync()
 .then(()=>{
