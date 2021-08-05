@@ -6,6 +6,7 @@ const {Op} = require("sequelize");
 const genOTP = require('../../utils/genOTP');
 const sendMail = require('../../utils/sendMail');
 const {hashPassword} = require('../../utils/hashPassword');
+const { sign } = require('../../utils/jwt');
 //required parameters 
 // first_name, last_name, email, password, tel
 const registration = asyncHandler(async (req, res, next) => {
@@ -47,7 +48,11 @@ const login = asyncHandler( async (req, res, next)=>{
         if(!user) throw "No such user"
         const isUser = await bcrypt.compare(password, user.dataValues.password);
         if(!isUser) throw "invalid password, please try again";
-        isUser && res.status(200).json({message: "success", ...user.dataValues, password: ""});
+
+        //generate token
+        const token = await sign(user);
+
+        isUser && res.status(200).json({message: "success", ...user.dataValues, token, password: ""});
      }catch(error){
          res.status(401).json({error})
      }
