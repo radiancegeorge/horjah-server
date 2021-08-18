@@ -5,9 +5,10 @@ const {
   fetchById,
   changeDeliveryStatus,
 } = require("../controllers/orders");
+const adminProtect = require("../middlewares/admin.auth.middleware");
 const allOrders = express.Router();
 
-allOrders.get("/getById", fetchById);
-allOrders.get("/:field", fetchOrders).post("/", addToOrder);
-allOrders.post("/toggleDeliveryStatus", changeDeliveryStatus);
+allOrders.get("/getById", adminProtect, fetchById);
+allOrders.get("/:field", adminProtect, fetchOrders).post("/", addToOrder);
+allOrders.post("/toggleDeliveryStatus", adminProtect, changeDeliveryStatus);
 module.exports = allOrders;

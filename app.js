@@ -8,6 +8,8 @@ const cors = require("cors");
 const products = require("./routes/products");
 const useragent = require("express-useragent");
 const allOrders = require("./routes/orders");
+const protect = require("./middlewares/auth.middleware");
+const adminProtect = require("./middlewares/admin.auth.middleware");
 require("./utils/sendMail");
 
 app.use(
@@ -22,7 +24,7 @@ app.use(useragent.express());
 
 app.use("/user", user);
 app.use("/products", products);
-app.use("/orders", allOrders);
+app.use("/orders", protect, allOrders);
 
 app.use("/uploads", express.static("uploads"));
 
