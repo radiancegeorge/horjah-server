@@ -4,6 +4,7 @@ const {
   orders,
   pendingOrders,
   deliveredOrders,
+  toggleDeliveryStatus,
 } = require("../../utils/registerOrders");
 
 const addToOrder = asyncHandler(async (req, res, next) => {
@@ -73,8 +74,23 @@ const fetchById = asyncHandler(async (req, res, next) => {
     });
   }
 });
+const changeDeliveryStatus = asyncHandler(async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    const data = await toggleDeliveryStatus(id);
+    res.status(200).json({
+      message: "success",
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error,
+    });
+  }
+});
 module.exports = {
   addToOrder,
   fetchOrders,
   fetchById,
+  changeDeliveryStatus,
 };

@@ -71,9 +71,30 @@ const orders = async (id) => {
     });
   return await Orders.findAll();
 };
+
+const toggleDeliveryStatus = async (id) => {
+  const { delivered_status } = await Orders.findOne({
+    where: {
+      id,
+    },
+  });
+  if (delivered_status)
+    return await Orders.update(
+      {
+        delivered_status: delivered_status === "1" ? 2 : 1,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+  if (!delivered_status) throw "invalid id!";
+};
 module.exports = {
   registerOrders,
   orders,
   deliveredOrders,
   pendingOrders,
+  toggleDeliveryStatus,
 };
