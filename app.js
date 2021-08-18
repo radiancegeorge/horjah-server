@@ -9,7 +9,6 @@ const products = require("./routes/products");
 const useragent = require("express-useragent");
 const allOrders = require("./routes/orders");
 const protect = require("./middlewares/auth.middleware");
-const adminProtect = require("./middlewares/admin.auth.middleware");
 require("./utils/sendMail");
 
 app.use(

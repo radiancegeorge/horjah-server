@@ -26,8 +26,7 @@ const Orders = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     delivered_status: {
-      allowNull: false,
-      type: DataTypes.ENUM(1, 2),
+      type: DataTypes.ENUM("1", "2"),
       defaultValue: 1,
     },
     total_price: {
