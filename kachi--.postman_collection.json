@@ -1,0 +1,1748 @@
+{
+	"info": {
+		"_postman_id": "cdb2174c-3ad1-4da4-b326-997f71d915b1",
+		"name": "kachi--",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "add categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "vegetables",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/products/createCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products",
+								"createCategory"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add categories",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "beverages",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:6000/products/createCategory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"products",
+										"createCategory"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "361"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"169-/K4YenYd3gR0n/sGsuE3NSCK6/4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jul 2021 19:36:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"category\": \"fruits\",\n            \"createdAt\": \"2021-07-11T19:29:53.393Z\",\n            \"updatedAt\": \"2021-07-11T19:29:53.393Z\"\n        },\n        {\n            \"id\": 2,\n            \"category\": \"cereals\",\n            \"createdAt\": \"2021-07-11T19:30:12.216Z\",\n            \"updatedAt\": \"2021-07-11T19:30:12.216Z\"\n        },\n        {\n            \"id\": 3,\n            \"category\": \"beverages\",\n            \"createdAt\": \"2021-07-11T19:36:16.006Z\",\n            \"updatedAt\": \"2021-07-11T19:36:16.006Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "remove category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/products/removeCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products",
+								"removeCategory"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:6000/products/removeCategory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"products",
+										"removeCategory"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "145"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"91-IJUbl3KKVZkDtmR25Ystp8GNWHU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jul 2021 19:38:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"succcess\",\n    \"categories\": [\n        {\n            \"id\": 2,\n            \"category\": \"cereals\",\n            \"createdAt\": \"2021-07-11T19:30:12.216Z\",\n            \"updatedAt\": \"2021-07-11T19:30:12.216Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "category",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "ugu",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "price_start",
+									"value": "600",
+									"disabled": true
+								},
+								{
+									"key": "price_end",
+									"value": "200",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http://localhost:4020/products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "category",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "612"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"264-d6WW7QS0b4NVT1hymCazvVe/zFg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 31 Jul 2021 21:47:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"product\": [\n        {\n            \"id\": 1,\n            \"name\": \"rice\",\n            \"category\": \"food\",\n            \"unit\": 4,\n            \"image\": \"/uploads/tory Hospital_1627523224941.png\",\n            \"price\": 10050,\n            \"createdAt\": \"2021-07-29T01:47:04.948Z\",\n            \"updatedAt\": \"2021-07-29T01:47:04.948Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"yam\",\n            \"category\": \"food\",\n            \"unit\": 4,\n            \"image\": \"/uploads/tory Hospital_1627523550691.png\",\n            \"price\": 10050,\n            \"createdAt\": \"2021-07-29T01:52:30.735Z\",\n            \"updatedAt\": \"2021-07-29T01:52:30.735Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"beans\",\n            \"category\": \"food\",\n            \"unit\": 4,\n            \"image\": \"/uploads/tory Hospital_1627523643316.png\",\n            \"price\": 10050,\n            \"createdAt\": \"2021-07-29T01:54:03.344Z\",\n            \"updatedAt\": \"2021-07-29T01:54:03.344Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "http://localhost:4020/products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "category",
+											"value": "food",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "rice",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "rice",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "226"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e2-4HsfETGFOr4MGe/cPG9rBF32akA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 31 Jul 2021 21:49:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"product\": [\n        {\n            \"id\": 1,\n            \"name\": \"rice\",\n            \"category\": \"food\",\n            \"unit\": 4,\n            \"image\": \"/uploads/tory Hospital_1627523224941.png\",\n            \"price\": 10050,\n            \"createdAt\": \"2021-07-29T01:47:04.948Z\",\n            \"updatedAt\": \"2021-07-29T01:47:04.948Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "get products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "category",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ugu",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "price_start",
+											"value": "600",
+											"disabled": true
+										},
+										{
+											"key": "price_end",
+											"value": "200",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-MAattktfaOHEdyayqhlu8AnHtZ0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Oct 2021 06:31:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"product\": [\n        {\n            \"id\": 12,\n            \"name\": \"tomatoes\",\n            \"category\": \"vegetables\",\n            \"unit\": 3,\n            \"image\": \"/uploads/7B68C1D0-CEB5-49B6-B6D0-DD1996478628.jpeg_1634193067101.jpeg\",\n            \"weight\": \"1\",\n            \"price\": 150,\n            \"createdAt\": \"2021-10-14T06:31:07.117Z\",\n            \"updatedAt\": \"2021-10-14T06:31:07.117Z\"\n        }\n    ],\n    \"productsCount\": 1,\n    \"currentPage\": 1,\n    \"totalPages\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "delete products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/products/deleteProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products",
+								"deleteProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tomatoes",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "vegetables",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/radianceobi/Pictures/Photos Library.photoslibrary/originals/7/7B68C1D0-CEB5-49B6-B6D0-DD1996478628.jpeg"
+								},
+								{
+									"key": "unit",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "150",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/products/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "add to order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "radiance obi",
+									"type": "text"
+								},
+								{
+									"key": "tel",
+									"value": "08138544036",
+									"type": "text"
+								},
+								{
+									"key": "zone",
+									"value": "area a",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "my empire",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "nothing much",
+									"type": "text"
+								},
+								{
+									"key": "total_price",
+									"value": "600",
+									"type": "text"
+								},
+								{
+									"key": "list",
+									"value": "this should later be an object",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add to order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "radiance obi",
+											"type": "text"
+										},
+										{
+											"key": "tel",
+											"value": "08138544036",
+											"type": "text"
+										},
+										{
+											"key": "zone",
+											"value": "area a",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "my empire",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "nothing much",
+											"type": "text"
+										},
+										{
+											"key": "total_price",
+											"value": "600",
+											"type": "text"
+										},
+										{
+											"key": "list",
+											"value": "this should later be an object",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1-F84fuSiEl8546CNt0/2N6vdU5mc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 01:35:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"name\": \"radiance obi\",\n        \"tel\": \"08138544036\",\n        \"zone\": \"area a\",\n        \"address\": \"my empire\",\n        \"notes\": \"nothing much\",\n        \"total_price\": \"600\",\n        \"list\": \"this should later be an object\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "order",
+									"value": "asc",
+									"type": "text"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "num",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/orders/pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"orders",
+								"pending"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders/getById",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders",
+										"getById"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-tko1UErLTfAGdnyFpqto8ARIkOc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 01:52:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"radiance obi\",\n            \"tel\": \"08138544036\",\n            \"zone\": \"area a\",\n            \"address\": \"my empire\",\n            \"notes\": \"nothing much\",\n            \"delivered_status\": \"1\",\n            \"total_price\": 600,\n            \"list\": \"this should later be an object\",\n            \"createdAt\": \"2021-08-18T01:35:51.958Z\",\n            \"updatedAt\": \"2021-08-18T01:35:51.958Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-tko1UErLTfAGdnyFpqto8ARIkOc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 01:52:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"radiance obi\",\n            \"tel\": \"08138544036\",\n            \"zone\": \"area a\",\n            \"address\": \"my empire\",\n            \"notes\": \"nothing much\",\n            \"delivered_status\": \"1\",\n            \"total_price\": 600,\n            \"list\": \"this should later be an object\",\n            \"createdAt\": \"2021-08-18T01:35:51.958Z\",\n            \"updatedAt\": \"2021-08-18T01:35:51.958Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders",
+										"pending"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-tko1UErLTfAGdnyFpqto8ARIkOc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 01:53:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"radiance obi\",\n            \"tel\": \"08138544036\",\n            \"zone\": \"area a\",\n            \"address\": \"my empire\",\n            \"notes\": \"nothing much\",\n            \"delivered_status\": \"1\",\n            \"total_price\": 600,\n            \"list\": \"this should later be an object\",\n            \"createdAt\": \"2021-08-18T01:35:51.958Z\",\n            \"updatedAt\": \"2021-08-18T01:35:51.958Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders/delivered",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders",
+										"delivered"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-fAOfFlptCUNm6zXj0tQd2Qn1HGI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 01:53:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "toggle delivery status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4020/orders/toggleDeliveryStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"orders",
+								"toggleDeliveryStatus"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "toggle delivery status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4020/orders/toggleDeliveryStatus",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4020",
+									"path": [
+										"orders",
+										"toggleDeliveryStatus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-SmVSrt2mobW3Sdkfp/mX+3kOH4g\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Aug 2021 17:56:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        1\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "radiancegeorge@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "radiance7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4020/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4020",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "radiance",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "obi",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "radiancegeorge@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "radiance7",
+							"type": "text"
+						},
+						{
+							"key": "tel",
+							"value": "08138544036",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4020/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4020",
+					"path": [
+						"user",
+						"register"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "radiance",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "obi",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "radiancegeorge@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "radiance7",
+									"type": "text"
+								},
+								{
+									"key": "tel",
+									"value": "08138544036",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6000",
+							"path": [
+								"user",
+								"register"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-sRXIwPO5z4IN8dt8PC0rXwIH3hg\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Jun 2021 22:16:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"successfully registered\",\n    \"first_name\": \"radiance\",\n    \"last_name\": \"obi\",\n    \"email\": \"radiancegeorge@gmail.com\",\n    \"password\": \"\",\n    \"tel\": \"08138544036\"\n}"
+				}
+			]
+		},
+		{
+			"name": "request password reset otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "radiancegeorge@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:6000/user/requestPasswordReset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"user",
+						"requestPasswordReset"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "request password reset otp",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "radiancegeorge@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6000/user/requestPasswordReset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6000",
+							"path": [
+								"user",
+								"requestPasswordReset"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1f-8u3z4r9f6sHtvwuonk68g9I2CBk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jul 2021 12:18:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"failed to send mail\"\n}"
+				},
+				{
+					"name": "request password reset otp",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "radiancegeorge@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6000/user/requestPasswordReset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6000",
+							"path": [
+								"user",
+								"requestPasswordReset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"22-yKgqNRajYrLrh9tqFTh3ihxIhOA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jul 2021 12:38:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"otp\": \"0556\"\n}"
+				}
+			]
+		},
+		{
+			"name": "reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "radiancegeorge@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "radiance8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:6000/user/resetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"user",
+						"resetPassword"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "reset password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "radiancegeorege@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "radiance8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6000/user/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6000",
+							"path": [
+								"user",
+								"resetPassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-an2qVFi44CZah9S1amwYmDfXXwk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jul 2021 14:05:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Password has been changed successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get all categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4020/products/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4020",
+					"path": [
+						"products",
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4020/products/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4020",
+							"path": [
+								"products",
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "355"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"163-JNlbat3VpzaRUIv337mpHqc85SA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Jul 2021 22:38:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"categories\": [\n        {\n            \"id\": 2,\n            \"category\": \"cereals\",\n            \"createdAt\": \"2021-07-11T19:30:12.216Z\",\n            \"updatedAt\": \"2021-07-11T19:30:12.216Z\"\n        },\n        {\n            \"id\": 4,\n            \"category\": \"hello\",\n            \"createdAt\": \"2021-07-13T09:20:13.677Z\",\n            \"updatedAt\": \"2021-07-13T09:20:13.677Z\"\n        },\n        {\n            \"id\": 5,\n            \"category\": \"test\",\n            \"createdAt\": \"2021-07-13T09:20:20.362Z\",\n            \"updatedAt\": \"2021-07-13T09:20:20.362Z\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{local_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
