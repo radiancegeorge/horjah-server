@@ -37,6 +37,10 @@ const Orders = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
+    reference: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
   });
 };
 module.exports = Orders;

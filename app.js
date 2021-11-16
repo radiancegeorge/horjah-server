@@ -8,6 +8,8 @@ const cors = require("cors");
 const products = require("./routes/products");
 const useragent = require("express-useragent");
 const allOrders = require("./routes/orders");
+// const protect = require("./middlewares/auth.middleware");
+const handleError = require("./middlewares/error.middleware");
 const protect = require("./middlewares/auth.middleware");
 require("./utils/sendMail");
 
@@ -27,6 +29,9 @@ app.use("/orders", protect, allOrders);
 
 app.use("/uploads", express.static("uploads"));
 
+app.get("/ping", (req, res) => res.send("200 ok!"));
+
+app.use(handleError);
 db.sequelize
   .sync()
   .then(() => {

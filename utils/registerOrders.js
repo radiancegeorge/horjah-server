@@ -16,12 +16,14 @@ const pendingOrders = async ({
   limit = 10,
   num = 1,
   getAll = false,
+  id,
+  reference,
 }) => {
   //get all pending orders
   if (getAll)
     return await Orders.findAll({
       where: {
-        delivered_status: 1,
+        delivered_status: 1 || 2,
       },
     });
 
@@ -30,6 +32,8 @@ const pendingOrders = async ({
   const orders = await Orders.findAll({
     where: {
       delivered_status: 1,
+      ...(id && { id }),
+      ...(reference && { reference }),
     },
     offset: startingPoint,
     limit,
@@ -43,6 +47,8 @@ const deliveredOrders = async ({
   limit = 10,
   num = 1,
   getAll = false,
+  id,
+  reference,
 }) => {
   if (getAll)
     return await Orders.findAll({
@@ -55,6 +61,8 @@ const deliveredOrders = async ({
   const orders = await Orders.findAll({
     where: {
       delivered_status: 2,
+      ...(id && { id }),
+      ...(reference && { reference }),
     },
     offset: startingPoint,
     limit,

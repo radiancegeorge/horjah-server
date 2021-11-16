@@ -30,7 +30,7 @@ const addToOrder = asyncHandler(async (req, res, next) => {
 const fetchOrders = asyncHandler(async (req, res, next) => {
   try {
     const { field } = req.params;
-    const { id, ...filterObject } = req.body;
+    const { id, ...filterObject } = req.query;
     // console.log(filterObject, req.body);
     if (field === "all") {
       const ordersData = await orders();
@@ -41,7 +41,7 @@ const fetchOrders = asyncHandler(async (req, res, next) => {
       return;
     }
     if (field === "delivered") {
-      const ordersData = await deliveredOrders({ ...filterObject });
+      const ordersData = await deliveredOrders({ id, ...filterObject });
       res.status(200).json({
         message: "success",
         data: ordersData,
@@ -49,7 +49,7 @@ const fetchOrders = asyncHandler(async (req, res, next) => {
       return;
     }
     if (field === "pending") {
-      const ordersData = await pendingOrders({ ...filterObject });
+      const ordersData = await pendingOrders({ id, ...filterObject });
       res.status(200).json({
         message: "success",
         data: ordersData,
@@ -58,10 +58,11 @@ const fetchOrders = asyncHandler(async (req, res, next) => {
     }
   } catch (error) {
     res.status(500).json({ error });
+    console.log(error);
   }
 });
 const fetchById = asyncHandler(async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.query;
   try {
     const ordersData = await orders(id);
     res.status(200).json({
