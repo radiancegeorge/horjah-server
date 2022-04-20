@@ -1,8 +1,11 @@
 require("dotenv").config();
 module.exports = {
   development: {
-    dialect: "sqlite",
-    storage: "./database.db",
+    username: process.env.db_user,
+    password: process.env.db_password,
+    database: process.env.database,
+    host: process.env.db_host,
+    dialect: "mysql",
   },
   test: {
     username: "root",

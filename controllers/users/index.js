@@ -1,11 +1,12 @@
 require("dotenv").config();
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
-const { Users } = require("../../models");
+const { Users, EmailStatus, EmailCodes } = require("../../models");
 const { Op } = require("sequelize");
 const genOTP = require("../../utils/genOTP");
 const sendMail = require("../../utils/sendMail");
 const { hashPassword } = require("../../utils/hashPassword");
+const crypto = require("crypto-js/");
 const { sign } = require("../../utils/jwt");
 //required parameters
 // first_name, last_name, email, password, tel
@@ -29,12 +30,50 @@ const registration = asyncHandler(async (req, res, next) => {
       user.dataValues.email &&
       setMessage("email or phone number already exists");
     data.hashedPassword = await hashPassword(password);
-    Users.create({ ...req.body, password: data.hashedPassword });
-    res
-      .status(200)
-      .json({ message: "successfully registered", ...req.body, password: "" });
+    const code = crypto.SHA256(email).toString();
+
+    await Users.create(
+      {
+        ...req.body,
+        password: data.hashedPassword,
+        EmailStatus: {
+          status: "0",
+          EmailCode: {
+            code,
+          },
+        },
+      },
+      {
+        include: [
+          {
+            model: EmailStatus,
+            include: EmailCodes,
+          },
+        ],
+      }
+    );
+    const currentUser = await Users.findOne({
+      where: {
+        email,
+      },
+      raw: true,
+      attributes: ["email", "id", "first_name", "last_name"],
+    });
+    await sendMail(
+      `Click <a href="${process.env.server_url}/user/verify/${code}">here</a> to verify your email `,
+      email,
+      undefined,
+      undefined,
+      "Email Verification"
+    );
+    res.status(200).json({
+      message: "successfully registered, please verify your email",
+      ...currentUser,
+      devCode: code,
+    });
   } catch (err) {
-    res.status(500).json({ error: err });
+    await Users.destroy({ where: { email } });
+    res.status(400).json({ error: err });
   }
 });
 
@@ -42,25 +81,32 @@ const registration = asyncHandler(async (req, res, next) => {
 //email, password
 const login = asyncHandler(async (req, res, next) => {
   const { password, email } = req.body;
-  const data = {};
   try {
     const user = await Users.findOne({
       where: {
         email,
       },
+      raw: true,
+      nest: true,
+      include: EmailStatus,
     });
+    console.log(user);
     if (!user) throw "No such user";
-    const isUser = await bcrypt.compare(password, user.dataValues.password);
+    const isUser = await bcrypt.compare(password, user.password);
     if (!isUser) throw "invalid password, please try again";
-
+    if (user.EmailStatus.status === "0")
+      throw { message: "please verify your Email", email: user.email };
+    if (user.EmailStatus.status === "2")
+      throw "Account disabled, please contact us!";
     //generate token
     const token = await sign(user);
 
     isUser &&
       res
         .status(200)
-        .json({ message: "success", ...user.dataValues, token, password: "" });
+        .json({ message: "success", ...user, token, password: "" });
   } catch (error) {
+    console.log(error);
     res.status(401).json({ error });
   }
 });
@@ -104,9 +150,71 @@ const resetPassword = asyncHandler(async (req, res, next) => {
   }
 });
 
+const emailVerification = asyncHandler(async (req, res, next) => {
+  const { code } = req.params;
+  console.log(code);
+  if (!code) throw "no code specified!";
+  const status = await EmailStatus.findOne({
+    include: { model: EmailCodes, where: { code } },
+    raw: true,
+    nest: true,
+  });
+  if (!status) throw "invalid verification code!";
+
+  await EmailStatus.update(
+    {
+      status: "1",
+    },
+    {
+      where: {
+        id: status.id,
+      },
+    }
+  );
+  res.send("verified!");
+  await EmailCodes.destroy({
+    where: {
+      code,
+    },
+  });
+});
+
+const resendVerificationEmail = asyncHandler(async (req, res, next) => {
+  const { email } = req.body;
+  if (!email) throw "please provide an email!";
+  const user = await Users.findOne({
+    where: { email },
+    raw: true,
+    nest: true,
+    include: EmailStatus,
+  });
+  if (!user) throw "no user with such mail";
+  if (user.EmailStatus.status === "1") throw "email already verified";
+
+  //code gen
+  const code = crypto.SHA256(email).toString();
+
+  await EmailCodes.upsert({
+    code,
+    EmailStatusId: user.EmailStatus.id,
+  });
+  await sendMail(
+    `Click <a href="${process.env.server_url}/user/verify/${code}">here</a> to verify your email `,
+    email,
+    undefined,
+    undefined,
+    "Email Verification"
+  );
+  res.send({
+    message: `an email has been sent to you, please use the link to verify!`,
+    email,
+  });
+});
 module.exports = {
   login,
   registration,
   requestPasswordReset,
   resetPassword,
+  emailVerification,
+  resendVerificationEmail,
 };

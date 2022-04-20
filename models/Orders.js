@@ -1,5 +1,5 @@
 const Orders = (sequelize, DataTypes) => {
-  return sequelize.define("Orders", {
+  const Orders = sequelize.define("Orders", {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -42,5 +42,9 @@ const Orders = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   });
+  Orders.associate = (models) => {
+    Orders.belongsTo(models.Users);
+  };
+  return Orders;
 };
 module.exports = Orders;
